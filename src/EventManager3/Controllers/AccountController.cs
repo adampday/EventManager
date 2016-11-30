@@ -29,6 +29,7 @@ namespace EventManager3.Controllers
             //IEmailSender emailSender,
             //ISmsSender smsSender,
             //ILoggerFactory loggerFactory
+            //dfdf
             )
         {
             _userManager = userManager;
