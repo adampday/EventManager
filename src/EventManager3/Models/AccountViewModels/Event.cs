@@ -11,6 +11,6 @@ namespace EventManager3.Models
         public DateTime time { get; set; }
         public string location { get; set; }
         public string genre { get; set; }
-        // new changes
+        // new changesd
     }
 }
