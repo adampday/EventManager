@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManager3.Models.AccountViewModels
 {
+    // new
     public class ArtistRegisterViewModel
     {
         [Required]
