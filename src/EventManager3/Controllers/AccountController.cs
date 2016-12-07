@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using EventManager3.Models;
 using EventManager3.Models.AccountViewModels;
 using EventManager3.Services;
-
+// ne
 namespace EventManager3.Controllers
 {
     [Authorize]
