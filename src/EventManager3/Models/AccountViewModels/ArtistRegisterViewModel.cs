@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventManager3.Models.AccountViewModels
 {
-    public class RegisterViewModel
+    public class ArtistRegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Required]
