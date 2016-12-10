@@ -17,16 +17,29 @@
         </ul>
     </form>
 }
-else
-{
+
+@*else if (SignInManager.IsSignedIn(Artist))
+{ 
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Artists", "ArtistRegister", "Account")</li>
                 <li>@Html.ActionLink("Users", "UserRegister", "Account")</li>
-                </ul>
-            </li>
+            </ul>
+
+ }*@
+
+            else
+            {
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Artists", "ArtistRegister", "Account")</li>
+                        <li>@Html.ActionLink("Users", "UserRegister", "Account")</li>
+                    </ul>
+                </li>
                 <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
             </ul>
-}
+            }
