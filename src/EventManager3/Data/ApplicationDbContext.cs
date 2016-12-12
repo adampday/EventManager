@@ -12,8 +12,8 @@ namespace EventManager3.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-        }
+        { }
+        public DbSet<Event> Event { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -24,3 +24,6 @@ namespace EventManager3.Data
         }
     }
 }
+
+
+

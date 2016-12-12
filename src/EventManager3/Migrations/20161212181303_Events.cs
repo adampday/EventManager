@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EventManager3.Data.Migrations
+namespace EventManager3.Migrations
 {
-    public partial class @event : Migration
+    public partial class Events : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

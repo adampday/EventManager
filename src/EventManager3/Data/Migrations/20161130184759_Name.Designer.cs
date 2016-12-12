@@ -7,7 +7,7 @@ using EventManager3.Data;
 
 namespace EventManager3.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    //[DbContext(typeof(ApplicationDbContext))]
     [Migration("20161130184759_Name")]
     partial class Name
     {

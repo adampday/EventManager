@@ -7,6 +7,7 @@ namespace EventManager3.Models
 {
     public class Event
     {
+        public int EventID { get; set; }
         public DateTime date { get; set; }
         public DateTime time { get; set; }
         public string location { get; set; }

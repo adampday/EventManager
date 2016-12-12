@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EventManager3.Data;
 
-namespace EventManager3.Data.Migrations
+namespace EventManager3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161210172222_event")]
-    partial class @event
+    [Migration("20161212181303_Events")]
+    partial class Events
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,6 +66,24 @@ namespace EventManager3.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("EventManager3.Models.Event", b =>
+                {
+                    b.Property<int>("EventID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("date");
+
+                    b.Property<string>("genre");
+
+                    b.Property<string>("location");
+
+                    b.Property<DateTime>("time");
+
+                    b.HasKey("EventID");
+
+                    b.ToTable("Event");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>

@@ -5,53 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EventManager3.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EventManager3.Controllers
 {
-    public class AlbumsController : Controller
+    public class EventController : Controller
     {
         private readonly ApplicationUser _context;
 
-        public AlbumsController(ApplicationUser context)
+        public EventController(ApplicationUser context)
         {
             _context = context;
         }
 
         public IActionResult Create()
         {
-            ViewBag.EventList = new SelectList(_context.AspNetUsers, "EventID", "Name");
+            //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Event event, String addnewEvent)
-            {
+        [Authorize(Roles = "artist")]
+        public IActionResult Create(Event ev, String addnewEvent)
+        {
             if (ModelState.IsValid)
             {
-                if (addNewEvent != null)
+                if (addnewEvent != null)
                 {
-                    foreach (var ev in _context.AspNetUsers.ToList())
+                    foreach (var eve in _context.Users.ToList())
                     {
-                        String name = ev.Name;
+                        String name = eve.Name;
                         if (name == addnewEvent)
                         {
                             addnewEvent = "";
                         }
                     }
-                    if (addNewEvent != "")
+                    if (addnewEvent != "")
                     {
-                        Event ev = new Event();
+                        Event even = new Event();
                     }
                 }
-                if (addNewEvent != "")
+                if (addnewEvent != "")
                 {
                     Event ev = new Event();
-                    Event.Name = addNewEvent;
+                    Event.Name = addnewEvent;
                     _context.Event.Add(event);
-                    _context.SaveChanges();
+        _context.SaveChanges();
 
         }
     }
 }
-     
+}

@@ -67,6 +67,24 @@ namespace EventManager3.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("EventManager3.Models.Event", b =>
+                {
+                    b.Property<int>("EventID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("date");
+
+                    b.Property<string>("genre");
+
+                    b.Property<string>("location");
+
+                    b.Property<DateTime>("time");
+
+                    b.HasKey("EventID");
+
+                    b.ToTable("Event");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
                     b.Property<string>("Id");
