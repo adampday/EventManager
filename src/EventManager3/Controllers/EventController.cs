@@ -19,7 +19,7 @@ namespace EventManager3.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles ="artist")]
         public IActionResult Create()
         {
             //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
@@ -27,33 +27,15 @@ namespace EventManager3.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "artist")]
-        public IActionResult Create(Event ev, String addnewEvent)
+        public IActionResult Create(Event addnewEvent)
         {
             if (ModelState.IsValid)
             {
-                if (addnewEvent != null)
-                {
-                    foreach (var eve in _context.Users.ToList())
-                    {
-                        String name = eve.Name;
-                        if (name == addnewEvent)
-                        {
-                            addnewEvent = "";
-                        }
-                    }
-                    if (addnewEvent != "")
-                    {
-                        Event even = new Event();
-                    }
-                }
-                if (addnewEvent != "")
-                {
-                    Event ev = new Event();
-                    Event.Name = addnewEvent;
-                    _context.Event.Add(event);
-        _context.SaveChanges();
+                    _context.Events.Add(addnewEvent);
+                    _context.SaveChanges();
 
         }
+        return View();
     }
 }
 }

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 <h2>Details</h2>
-<form action="Create" method="get">
+<form action="Create" method="post">
     <button class="btn btn-sm btn-default">Create Event</button>
 </form>
 
@@ -10,19 +10,13 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Details" asp-route-sortOrder="@ViewBag">Event</a>
+                <a asp-action="Details">Date</a>
             </th>
             <th>
-                <a asp-action="Details" asp-route-sortOrder="@ViewBag">Artist</a>
+                <a asp-action="Details">Location</a>
             </th>
             <th>
-                <a asp-action="Details" asp-route-sortOrder="@ViewBag">Genre</a>
-            </th>
-            <th>
-                <a asp-action="Details" asp-route-sortOrder="@ViewBag">Date</a>
-            </th>
-            <th>
-                <a asp-action="Details" asp-route-sortOrder="@ViewBag">Time</a>
+                <a asp-action="Details">Genre</a>
             </th>
         </tr>
     </thead>

@@ -8,10 +8,10 @@ namespace EventManager3.Models
     public class Event
     {
         public int EventID { get; set; }
-        public DateTime date { get; set; }
-        public DateTime time { get; set; }
-        public string location { get; set; }
-        public string genre { get; set; }
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public string Location { get; set; }
+        public string Genre { get; set; }
         // new changesd
     }
 }

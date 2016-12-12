@@ -1,0 +1,23 @@
+﻿@model EventManager3.Models.Event
+@{
+    ViewData["Title"] = "Create an Event:";
+}
+<h3>Create Event:</h3>
+<form asp-action="Create" method="post">
+    <div>
+        <div>Date <p><input type="date" name="Date" class="btn-lg"> asp-for="Date" value="" ></p></div>
+        <span asp-validation-for="Date"></span>
+        <div>Location <p><input type="text" id=select asp-for="Location" name="GenreID" class="btn-lg"></p></div>
+        <span asp-validation-for="Location"></span>
+        <div>Genre <p><input type="text" asp-for="Genre" value="" /></p></div>
+        <span asp-validation-for="Genre"></span>
+    </div>
+
+    <button>Add event</button>
+
+
+</form>
+
+<form action="Index" method="get">
+    <button>Go back</button>
+</form>
