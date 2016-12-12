@@ -12,11 +12,11 @@ using EventManager3.Data;
 
 namespace EventManager3.Controllers
 {
-    public class EventController : Controller
+    public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EventController(ApplicationDbContext context)
+        public EventsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -32,7 +32,7 @@ namespace EventManager3.Controllers
         {
             if (ModelState.IsValid)
             {
-                    _context.Event.Add(addnewEvent);
+                    _context.Events.Add(addnewEvent);
                     _context.SaveChanges();
                 return RedirectToAction("Index");
 

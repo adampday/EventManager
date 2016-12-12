@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "Create an Event:";
 }
-<h3>Create Event:</h3>
-<form asp-action="Create" method="post">
+<h3>Delete Event:</h3>
+<form asp-action="Delete" method="post">
     <div>
-        <div>Date <p><input type="date" name="Date" class="btn-lg" asp-for="Date" value="" ></p></div>
+        <div>Date <p><input type="date" name="Date" class="btn-lg" asp-for="Date" value=""></p></div>
         <span asp-validation-for="Date"></span>
         <div>Location <p><input type="text" id=select asp-for="Location" name="GenreID" class="btn-lg"></p></div>
         <span asp-validation-for="Location"></span>
@@ -13,7 +13,7 @@
         <span asp-validation-for="Genre"></span>
     </div>
 
-    <button>Add event</button>
+    <button>Delete event</button>
 
 
 </form>
