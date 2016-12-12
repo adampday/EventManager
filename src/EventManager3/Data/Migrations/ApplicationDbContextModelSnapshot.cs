@@ -30,6 +30,8 @@ namespace EventManager3.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("Event");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -72,13 +74,13 @@ namespace EventManager3.Data.Migrations
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("date");
+                    b.Property<DateTime>("Date");
 
-                    b.Property<string>("genre");
+                    b.Property<string>("Genre");
 
-                    b.Property<string>("location");
+                    b.Property<string>("Location");
 
-                    b.Property<DateTime>("time");
+                    b.Property<string>("Name");
 
                     b.HasKey("EventID");
 

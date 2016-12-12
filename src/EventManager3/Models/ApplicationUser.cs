@@ -10,5 +10,8 @@ namespace EventManager3.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+        public string Event { get; set; }
+
+        
     }
 }

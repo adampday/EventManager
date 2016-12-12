@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using EventManager3.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using EventManager3.Data;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,9 +14,9 @@ namespace EventManager3.Controllers
 {
     public class EventController : Controller
     {
-        private readonly ApplicationUser _context;
+        private readonly ApplicationDbContext _context;
 
-        public EventController(ApplicationUser context)
+        public EventController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -31,8 +32,9 @@ namespace EventManager3.Controllers
         {
             if (ModelState.IsValid)
             {
-                    _context.Events.Add(addnewEvent);
+                    _context.Event.Add(addnewEvent);
                     _context.SaveChanges();
+                return RedirectToAction("Index");
 
         }
         return View();

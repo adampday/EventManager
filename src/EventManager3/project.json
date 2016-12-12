@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-EventManager3-0bc197fe-5e1f-4c05-9ae3-ad912bb94861",
 
   "dependencies": {
@@ -41,10 +41,12 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.1",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0"
   },
 
   "tools": {

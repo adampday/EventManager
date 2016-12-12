@@ -8,8 +8,8 @@ using EventManager3.Data;
 namespace EventManager3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161212181303_Events")]
-    partial class Events
+    [Migration("20161212201455_event")]
+    partial class @event
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,8 @@ namespace EventManager3.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Event");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -73,13 +75,13 @@ namespace EventManager3.Migrations
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("date");
+                    b.Property<DateTime>("Date");
 
-                    b.Property<string>("genre");
+                    b.Property<string>("Genre");
 
-                    b.Property<string>("location");
+                    b.Property<string>("Location");
 
-                    b.Property<DateTime>("time");
+                    b.Property<string>("Name");
 
                     b.HasKey("EventID");
 
