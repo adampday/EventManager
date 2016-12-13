@@ -36,19 +36,19 @@ namespace EventManager3.Controllers
         {
             if (ModelState.IsValid)
             {
-               Events e = _context.events.Add(addnewEvent);
+                _context.Add(addnewEvent);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
 
             }
             return View();
         }
-    }
+    
     [Authorize(Roles = "artist")]
     public IActionResult Update(int? id)
     {
 
-        Events e = _context.events.SingleOrDefault(a => a.EventID == id);
+        Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
         return RedirectToAction("Index");
     }
 
@@ -56,7 +56,7 @@ namespace EventManager3.Controllers
     [Authorize(Roles = "artist")] 
     public IActionResult Update(Events e)
     {
-        _context.events.Update(e);
+        _context.Update(e);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
@@ -64,14 +64,14 @@ namespace EventManager3.Controllers
     [Authorize(Roles = "artist")]
     public IActionResult Delete(int? id)
     {
-        Events e = _context.events.SingleOrDefault(a => a.EventID == id);
+        Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
         return RedirectToAction("Index");
     }
     [HttpPost]
     [Authorize(Roles = "artist")]
     public IActionResult Delete(Events e)
     {
-        _context.events.Remove(e);
+        _context.Remove(e);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }

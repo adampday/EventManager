@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace EventManager3.Models
 {
-    public class Event
+    public class Events
     {
-        public int EventID { get; set; }
+        public int EventsID { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
