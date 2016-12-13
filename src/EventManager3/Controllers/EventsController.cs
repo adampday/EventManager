@@ -7,6 +7,7 @@ using EventManager3.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using EventManager3.Data;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,12 +16,15 @@ namespace EventManager3.Controllers
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EventsController(ApplicationDbContext context)
+        public EventsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
-        [Authorize(Roles ="artist")]
+        [Authorize(Roles = "artist")]
         public IActionResult Create()
         {
             //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
@@ -28,16 +32,52 @@ namespace EventManager3.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "artist")]
-        public IActionResult Create(Event addnewEvent)
+        public IActionResult Create(Events addnewEvent)
         {
             if (ModelState.IsValid)
             {
-                    _context.Events.Add(addnewEvent);
-                    _context.SaveChanges();
+               Events e = _context.events.Add(addnewEvent);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
 
+            }
+            return View();
         }
-        return View();
+    }
+    [Authorize(Roles = "artist")]
+    public IActionResult Update(int? id)
+    {
+
+        Events e = _context.events.SingleOrDefault(a => a.EventID == id);
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "artist")] 
+    public IActionResult Update(Events e)
+    {
+        _context.events.Update(e);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    [Authorize(Roles = "artist")]
+    public IActionResult Delete(int? id)
+    {
+        Events e = _context.events.SingleOrDefault(a => a.EventID == id);
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    [Authorize(Roles = "artist")]
+    public IActionResult Delete(Events e)
+    {
+        _context.events.Remove(e);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
     }
 }
 }
+
+
+
+   
