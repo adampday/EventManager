@@ -64,7 +64,7 @@ namespace EventManager3.Controllers
             return View(e);
         }
 
-    //[Authorize(Roles = "ARTIST")]
+    [Authorize(Roles = "ARTIST")]
     public IActionResult Update(int? id)
     {
 

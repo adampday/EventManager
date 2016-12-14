@@ -21,6 +21,7 @@ namespace EventManager3.Controllers
             _userManager = userManager;
         }
         // NEW CHANGE
+        // new change
         //[Authorize(Roles="artist")]
         public IActionResult Index(String searchString, String sort)
         {
