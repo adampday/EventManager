@@ -9,6 +9,7 @@ namespace EventManager3.Models
     public class Events
     {
         public int EventsID { get; set; }
+        public string ArtistID { get; set; }
         [Required(ErrorMessage="Name is required")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Artist Name is required")]

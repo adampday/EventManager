@@ -30,7 +30,7 @@ namespace EventManager3.Controllers
                              select m;
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    events = events.Where(s => s.Name.Contains(searchString) || s.Location.Contains(searchString) || s.Genre.Contains(searchString) || s.ArtistName.Contains(searchString)); //return album
+                    events = events.Where(s => s.Name.Contains(searchString) || s.Location.Contains(searchString) || s.Genre.Contains(searchString) || s.ArtistName.Contains(searchString)); //return event
 
                 }
                 return View(events);

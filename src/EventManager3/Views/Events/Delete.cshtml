@@ -2,10 +2,11 @@
 @{
     ViewData["Title"] = "Delete an Event:";
 }
+@inject UserManager<ApplicationUser> UserManager
 <h3>Delete Event:</h3>
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="EventsID" value="@Model.EventsID" />
-
+    <div>Event: @Model.Name</div>
     <button>Delete event</button>
 
 

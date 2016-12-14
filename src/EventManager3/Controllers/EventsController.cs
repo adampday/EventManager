@@ -24,15 +24,16 @@ namespace EventManager3.Controllers
             _userManager = userManager;
 
         }
-        [Authorize(Roles = "ARTIST")]
+       [Authorize(Roles = "ARTIST")]
         public IActionResult Create()
         {
             //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
             return View();
         }
+        // new change
 
         [HttpPost]
-        [Authorize(Roles = "ARTIST")]
+       [Authorize(Roles = "ARTIST")]
         public IActionResult Create(Events addnewEvent)
         {
             string artistName = "";
@@ -63,7 +64,7 @@ namespace EventManager3.Controllers
             return View(e);
         }
 
-        [Authorize(Roles = "ARTIST")]
+    //[Authorize(Roles = "ARTIST")]
     public IActionResult Update(int? id)
     {
 
@@ -100,7 +101,7 @@ namespace EventManager3.Controllers
             return View();
         }
 
-   [Authorize(Roles = "ARTIST")]
+  [Authorize(Roles = "ARTIST")]
     public IActionResult Delete(int? id)
     {
         Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
@@ -114,7 +115,7 @@ namespace EventManager3.Controllers
     
 
     [HttpPost]
-    [Authorize(Roles = "ARTIST")]
+   [Authorize(Roles = "ARTIST")]
     public IActionResult Delete(Events e)
     {
         _context.Events.Remove(e);
