@@ -4,9 +4,13 @@
     }
 
     <h2>Details</h2>
+@if ((User.IsInRole("ARTIST")) && !(User.IsInRole("USER")))
+{
     <form asp-controller="Events" asp-action="Create" method="get">
         <button class="btn btn-sm btn-default">Create Event</button>
     </form>
+}
+
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
@@ -58,13 +62,20 @@
                         <td>@Html.DisplayFor(modelItem => events.Location)</td>
                         <td>@Html.DisplayFor(modelItem => events.Genre)</td>
                         <td>
-                            if (UserManager.SignInManager == USER)
+                            @if ((User.IsInRole("ARTIST")) && !(User.IsInRole("USER")))
                             {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Update" asp-route-id="@events.EventsID">Edit</a>
-                            } 
+                            }
+                            @if (User.IsInRole("ARTIST") || (User.IsInRole("USER")))
+                            {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Details</a>
+                            }
+                            @if ((User.IsInRole("ARTIST")) && !(User.IsInRole("USER")))
+                            {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Delete" asp-route-id="@events.EventsID">Delete</a>
+                            }
                         </td>
                     </tr>
                         }
+
 </table>
