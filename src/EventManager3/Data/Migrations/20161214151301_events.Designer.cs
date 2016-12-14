@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EventManager3.Data;
 
-namespace EventManager3.Data.Migrations
+namespace EventManager3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161214151301_events")]
+    partial class events
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -29,6 +30,8 @@ namespace EventManager3.Data.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Event");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -72,19 +75,13 @@ namespace EventManager3.Data.Migrations
                     b.Property<int>("EventsID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ArtistName")
-                        .IsRequired();
-
                     b.Property<DateTime>("Date");
 
-                    b.Property<string>("Genre")
-                        .IsRequired();
+                    b.Property<string>("Genre");
 
-                    b.Property<string>("Location")
-                        .IsRequired();
+                    b.Property<string>("Location");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("EventsID");
 

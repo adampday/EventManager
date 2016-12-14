@@ -1,23 +1,70 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<h2>Details</h2>
-<form action="Create" method="post">
-    <button class="btn btn-sm btn-default">Create Event</button>
+﻿@model IEnumerable<EventManager3.Models.Events>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <h2>Details</h2>
+    <form asp-controller="Events" asp-action="Create" method="get">
+        <button class="btn btn-sm btn-default">Create Event</button>
+    </form>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search events: <input type="text" name="searchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+       
+    </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Details">Date</a>
-            </th>
-            <th>
-                <a asp-action="Details">Location</a>
-            </th>
-            <th>
-                <a asp-action="Details">Genre</a>
-            </th>
-        </tr>
-    </thead>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="hidden" name="sort" value="sort"/>
+            <input type="submit" value="Sort event" class="btn btn-default" />
+        </p>
+
+    </div>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a>Name</a>
+                </th>
+                <th>
+                    <a>Artist Name</a>
+                </th>
+                <th>
+                    <a>Date and Time</a>
+                </th>
+                <th>
+                    <a>Location</a>
+                </th>
+                <th>
+                    <a>Genre</a>
+                </th>
+
+            </tr>
+        </thead>
+                @foreach (var events in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => events.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => events.ArtistName)</td>
+                        <td>@Html.DisplayFor(modelItem => events.Date)</td>
+                        <td>@Html.DisplayFor(modelItem => events.Location)</td>
+                        <td>@Html.DisplayFor(modelItem => events.Genre)</td>
+                        <td>
+                            if (UserManager.SignInManager == USER)
+                            {
+                            <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Update" asp-route-id="@events.EventsID">Edit</a>
+                            } 
+                            <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Details</a>
+                            <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Delete" asp-route-id="@events.EventsID">Delete</a>
+                        </td>
+                    </tr>
+                        }
 </table>

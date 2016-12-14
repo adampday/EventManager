@@ -2,22 +2,27 @@
 @{
     ViewData["Title"] = "Update an Event:";
 }
-<h3>Create Event:</h3>
+@inject UserManager<ApplicationUser> UserManager
+<h3>Update Event:</h3>
 <form asp-action="Update" method="post">
+    <input type="hidden" asp-for="EventsID" value="@Model.EventsID" />
     <div>
-        <div>Date <p><input type="date" name="Date" class="btn-lg" asp-for="Date" value=""></p></div>
+        <div>Event Name<p><input type="text" name="Name" class="btn-lg" asp-for="Name" value="@Model.Name"></p></div>
+        <span asp-validation-for="Name"></span>
+        <input type="hidden" asp-for="ArtistName" value=@UserManager.GetUserName(User)>
+        <div>Date and Time<p><input type="date" name="Date" class="btn-lg" asp-for="Date" value="@Model.Date"></p></div>
         <span asp-validation-for="Date"></span>
-        <div>Location <p><input type="text" id=select asp-for="Location" name="GenreID" class="btn-lg"></p></div>
+        <div>Location <p><input type="text" name="Location" class="btn-lg" asp-for="Location" value="@Model.Location" ></p></div>
         <span asp-validation-for="Location"></span>
-        <div>Genre <p><input type="text" asp-for="Genre" value="" /></p></div>
+        <div>Genre <p><input type="text" asp-for="Genre" value="@Model.Genre" /></p></div>
         <span asp-validation-for="Genre"></span>
     </div>
 
-    <button>Add event</button>
+    <button>Update event</button>
 
 
 </form>
 
-<form action="Index" method="get">
+<form asp-controller="Home" asp-action="Index" method="get">
     <button>Go back</button>
 </form>

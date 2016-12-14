@@ -24,57 +24,102 @@ namespace EventManager3.Controllers
             _userManager = userManager;
 
         }
-        [Authorize(Roles = "artist")]
+        [Authorize(Roles = "ARTIST")]
         public IActionResult Create()
         {
             //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
             return View();
         }
+
         [HttpPost]
-        [Authorize(Roles = "artist")]
+        [Authorize(Roles = "ARTIST")]
         public IActionResult Create(Events addnewEvent)
         {
+            string artistName = "";
+            string currentUserName = _userManager.GetUserName(User);
+            foreach (ApplicationUser user in _userManager.Users)
+            {
+                if (user.UserName == currentUserName)
+                {
+                    artistName = user.Name;
+                }
+            }
             if (ModelState.IsValid)
             {
-                _context.Add(addnewEvent);
+                addnewEvent.ArtistName = artistName;
+                _context.Events.Add(addnewEvent);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(HomeController.Index),"Home");
 
             }
             return View();
         }
-    
-    [Authorize(Roles = "artist")]
+        [Authorize]
+        public IActionResult ReadEvents(int? id)
+        {
+
+            Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
+            return View(e);
+        }
+
+        [Authorize(Roles = "ARTIST")]
     public IActionResult Update(int? id)
     {
 
         Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
-        return RedirectToAction("Index");
-    }
 
-    [HttpPost]
-    [Authorize(Roles = "artist")] 
+            if (_userManager.GetUserName(User) == e.ArtistName)
+            { 
+                return View(e);
+            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+   [HttpPost]
+   [Authorize(Roles = "ARTIST")] 
     public IActionResult Update(Events e)
     {
-        _context.Update(e);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
+            string artistName = "";
+            string currentUserName = _userManager.GetUserName(User);
+            foreach (ApplicationUser user in _userManager.Users)
+            {
+                if (user.UserName == currentUserName)
+                {
+                    artistName = user.Name;
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                e.ArtistName = artistName;
+                _context.Events.Update(e);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(HomeController.Index), "Home");
 
-    [Authorize(Roles = "artist")]
+            }
+            return View();
+        }
+
+   [Authorize(Roles = "ARTIST")]
     public IActionResult Delete(int? id)
     {
         Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
-        return RedirectToAction("Index");
-    }
+
+            if (_userManager.GetUserName(User) == e.ArtistName)
+            {
+                return View(e);
+            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+    
+
     [HttpPost]
-    [Authorize(Roles = "artist")]
+    [Authorize(Roles = "ARTIST")]
     public IActionResult Delete(Events e)
     {
-        _context.Remove(e);
+        _context.Events.Remove(e);
         _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
+        return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
 }
 }
 
