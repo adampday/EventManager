@@ -6,7 +6,10 @@
     <h2 class="jumbotron"><span class="glyphicon glyphicon-music"></span>Artists Events</h2>
 
     <form asp-controller="Events" asp-action="Create" method="get">
+@if (User.IsInRole("ARTIST") == true)
+{
         <button class="btn btn-sm btn-default">Create Event</button>
+}
     </form>
 
 <form asp-action="Index" method="get">
@@ -52,6 +55,8 @@
         </thead>
                 @foreach (var events in Model)
                 {
+                    @if(events.Date > DateTime.Now)
+                    { 
                     <tr>
                         <td>@Html.DisplayFor(modelItem => events.Name)</td>
                         <td>@Html.DisplayFor(modelItem => events.ArtistName)</td>
@@ -59,13 +64,18 @@
                         <td>@Html.DisplayFor(modelItem => events.Location)</td>
                         <td>@Html.DisplayFor(modelItem => events.Genre)</td>
                         <td>
-                            
+                            @if (User.IsInRole("ARTIST") == true)
+                            {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Update" asp-route-id="@events.EventsID">Edit</a>
-                            <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Details</a>       
+                            }
+                            <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Details</a>
+                            @if (User.IsInRole("ARTIST") == true)
+                            {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Delete" asp-route-id="@events.EventsID">Delete</a>
-                                
+                            }  
                         </td>
                     </tr>
-                        }
+                    }
+                }
 
 </table>

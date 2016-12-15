@@ -15,7 +15,8 @@ namespace EventManager3.Models
         [Required(ErrorMessage = "Artist Name is required")]
         public string ArtistName { get; set; }
         [Required(ErrorMessage = "Date is required")]
-        public DateTime Date { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }     
         [Required(ErrorMessage = "Location is required")]
         public string Location { get; set; }
         [Required(ErrorMessage = "Genre is required")]

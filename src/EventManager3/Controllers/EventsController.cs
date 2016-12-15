@@ -69,12 +69,8 @@ namespace EventManager3.Controllers
     {
 
         Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
-
-            if (_userManager.GetUserName(User) == e.ArtistName)
-            { 
                 return View(e);
-            }
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+     
         }
 
    [HttpPost]
@@ -102,11 +98,9 @@ namespace EventManager3.Controllers
     {
         Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
 
-            if (_userManager.GetUserName(User) == e.ArtistName)
-            {
+            
                 return View(e);
-            }
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            
         }
     
 

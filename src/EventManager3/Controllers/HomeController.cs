@@ -22,7 +22,7 @@ namespace EventManager3.Controllers
         }
         // NEW CHANGE
         // new change
-        //[Authorize(Roles="artist")]
+        //[Authorize(Roles="ARTIST")]
         public IActionResult Index(String searchString, String sort)
         {
             if (searchString != null)
