@@ -24,7 +24,7 @@ namespace EventManager3.Controllers
             _userManager = userManager;
 
         }
-       [Authorize(Roles = "ARTIST")]
+        [Authorize(Roles = "ARTIST")]
         public IActionResult Create()
         {
             //ViewBag.EventList = new SelectList(_context.Users, "EventID", "Name");
@@ -32,8 +32,8 @@ namespace EventManager3.Controllers
         }
         // new change
 
-       [HttpPost]
-       [Authorize(Roles = "ARTIST")]
+        [HttpPost]
+        [Authorize(Roles = "ARTIST")]
         public IActionResult Create(Events addnewEvent)
         {
             string artistName = "";
@@ -50,7 +50,7 @@ namespace EventManager3.Controllers
                 addnewEvent.ArtistName = artistName;
                 _context.Events.Add(addnewEvent);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(HomeController.Index),"Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
 
             }
             return View();
@@ -63,20 +63,20 @@ namespace EventManager3.Controllers
             Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
             return View(e);
         }
-    
-    [Authorize(Roles = "ARTIST")]
-    public IActionResult Update(int? id)
-    {
 
-        Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
-                return View(e);
-     
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Update(int? id)
+        {
+
+            Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
+            return View(e);
+
         }
 
-   [HttpPost]
-   [Authorize(Roles = "ARTIST")] 
-    public IActionResult Update(Events e)
-    {
+        [HttpPost]
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Update(Events e)
+        {
             string artistName = "";
             string currentUserName = _userManager.GetUserName(User);
             foreach (ApplicationUser user in _userManager.Users)
@@ -89,31 +89,80 @@ namespace EventManager3.Controllers
 
             e.ArtistName = artistName;
             _context.Events.Update(e);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(HomeController.Index), "Home");        
+            _context.SaveChanges();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-  [Authorize(Roles = "ARTIST")]
-    public IActionResult Delete(int? id)
-    {
-        Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Delete(int? id)
+        {
+            Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
 
-            
-                return View(e);
-            
-        }
-    
 
-    [HttpPost]
-   [Authorize(Roles = "ARTIST")]
-    public IActionResult Delete(Events e)
-    {
-        _context.Events.Remove(e);
-        _context.SaveChanges();
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+            return View(e);
+
         }
-}
-}
+
+
+        [HttpPost]
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Delete(Events e)
+        {
+            _context.Events.Remove(e);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+
+        //[Authorize]
+        //public IActionResult Follow()
+        //{
+        //    string userID = _userManager.GetUserId(User);
+        //    foreach (var follow in _context.Follows)
+        //    {
+        //        if (follow.UserID == userID)
+        //        {
+        //            if (follow.Follow == null)
+        //            {
+        //                follow.Follows = new List<ApplicationUser>();
+        //            }
+        //            return View(follow);
+        //        }
+        //    }
+        //    return RedirectToAction(nameof(HomeController.Index), "Home");
+        //}
+
+        //[HttpPost]
+        //[Authorize]
+        //public IActionResult Follow(int? id)
+        //{
+        //    ApplicationUser artist = new ApplicationUser();
+        //    Events events = _context.Events.SingleOrDefault(a => a.EventsID == id);
+        //    String artist_name = events.ArtistName;
+        //    foreach (var find_artist in _context.Users)
+        //    {
+        //        if (find_artist.UserName == artist_name)
+        //        {
+        //            artist = find_artist;
+        //        }
+        //    }
+        //    string userID = _userManager.GetUserId(User);
+        //    foreach (var follow in _context.Follows)
+        //    {
+        //        if (follow.UserID == userID)
+        //        {
+        //            if (follow == null)
+        //            {
+        //                follow.Follow = new List<ApplicationUser>();
+        //            }
+        //            return View(follow);
+        //        }
+        //    }
+        //    return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+    }
+
 
 
 

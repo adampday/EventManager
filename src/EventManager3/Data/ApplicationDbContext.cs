@@ -14,6 +14,8 @@ namespace EventManager3.Data
             : base(options)
         { }
         public DbSet<Events> Events { get; set; }
+        public DbSet<Follow> Follows { get; set; }
+        public DbSet<UserEvent> userEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
