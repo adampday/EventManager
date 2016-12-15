@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: lightgreen;
 }
 
 /* Wrapping element */
@@ -10,6 +11,32 @@
     padding-right: 15px;
 }
 
+table, th, td{
+    border: 2px solid white;
+    text-align:center;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: hotpink;
+}
+/*a{
+    font-size: large;
+}*/
+li{
+    font-size:large;
+}
+
+.btn-link{
+    font-size:large;
+}
+
+button{
+font-size: large;
+}
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,
@@ -17,6 +44,9 @@ textarea {
     max-width: 280px;
 }
 
+.navbar-inverse{
+    background-color: yellow;
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;

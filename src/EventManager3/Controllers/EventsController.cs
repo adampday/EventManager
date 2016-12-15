@@ -32,7 +32,7 @@ namespace EventManager3.Controllers
         }
         // new change
 
-        [HttpPost]
+       [HttpPost]
        [Authorize(Roles = "ARTIST")]
         public IActionResult Create(Events addnewEvent)
         {
@@ -63,7 +63,7 @@ namespace EventManager3.Controllers
             Events e = _context.Events.SingleOrDefault(a => a.EventsID == id);
             return View(e);
         }
-
+    
     [Authorize(Roles = "ARTIST")]
     public IActionResult Update(int? id)
     {
@@ -90,15 +90,11 @@ namespace EventManager3.Controllers
                     artistName = user.Name;
                 }
             }
-            if (ModelState.IsValid)
-            {
-                e.ArtistName = artistName;
-                _context.Events.Update(e);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(HomeController.Index), "Home");
 
-            }
-            return View();
+            e.ArtistName = artistName;
+            _context.Events.Update(e);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(HomeController.Index), "Home");        
         }
 
   [Authorize(Roles = "ARTIST")]
