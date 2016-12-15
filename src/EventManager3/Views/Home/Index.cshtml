@@ -50,6 +50,7 @@
                 <th>
                     <a>Genre</a>
                 </th>
+                
 
             </tr>
         </thead>
@@ -69,6 +70,10 @@
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Update" asp-route-id="@events.EventsID">Edit</a>
                             }
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Details</a>
+                            @if (User.IsInRole("ARTIST") == false)
+                            {
+                                <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventsID">Follow</a>
+                            }
                             @if (User.IsInRole("ARTIST") == true)
                             {
                             <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Delete" asp-route-id="@events.EventsID">Delete</a>
